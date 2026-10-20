@@ -1,0 +1,46 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "provider": {
+    "company-llm": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "OpenAI 相容端點",
+      "options": {
+        "baseURL": "{env:LLM_BASE_URL}",
+        "apiKey": "{env:LLM_API_KEY}"
+      },
+      "models": {
+        "your-model-id": {
+          "name": "主要模型"
+        }
+      }
+    }
+  },
+  "model": "company-llm/your-model-id",
+  "instructions": [
+    "memory/boss/preferences.md",
+    "memory/boss/playbook.md",
+    "memory/knowledge/glossary.md",
+    "memory/knowledge/people.md",
+    "memory/work/index.md"
+  ],
+  "permission": {
+    "edit": {
+      "*": "ask",
+      "reports/*": "allow"
+    },
+    "bash": {
+      "*": "allow",
+      "rm *": "ask",
+      "git rm *": "ask",
+      "mv *": "ask",
+      "git mv *": "ask"
+    }
+  },
+  "mcp": {
+    "company-wiki": {
+      "type": "remote",
+      "url": "https://example.com/mcp",
+      "enabled": false
+    }
+  }
+}
