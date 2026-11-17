@@ -8,6 +8,8 @@
 - `memory/`：所有記憶，都是 Markdown，可以直接打開改
 - `.opencode/commands/`：自訂指令，每個指令是一份固定流程的 prompt
 
+另外附了兩個畫圖 skill（`.opencode/skills/`）和四份通用溝通框架（`references/communication/`），說明見下方。
+
 git 歷史就是記憶的修改紀錄：記錯了可以 `git revert`，也能用 `git log` 看主管偏好怎麼變過來的。
 
 ## 開始使用
@@ -90,6 +92,64 @@ git 歷史就是記憶的修改紀錄：記錯了可以 `git revert`，也能用
 - **L3**：備用細節，照追問路徑排好，主管問了再拿出來
 
 一開始這份設定是空的，靠 `/debrief` 慢慢累積。回報互動時，記得描述主管在哪裡打斷你、追問了什麼。
+
+## 通用溝通框架
+
+偏好檔剛開始是空的，助理不知道這位主管要什麼。`references/communication/` 收錄四份別人整理好的通用做法，在偏好還沒累積到的地方先用：
+
+| 框架 | 來源 | 用在 |
+|---|---|---|
+| 金字塔原理 | Barbara Minto 的方法，applied-artificial-intelligence 整理 | 所有要面對主管的說明 |
+| 主管更新模板 | Anthropic 官方的 stakeholder-update | 日報、週報、風險回報 |
+| 向上管理 | Lenny's Podcast 21 位來賓的經驗，refoundai 整理 | 爭取資源、不同意主管、重排優先順序 |
+| 困難對話 | softaworks 整理 | 壞消息、被追問時的應對、`/drill` 練習 |
+
+**主管偏好永遠優先。** 通用做法和偏好衝突時，助理照偏好做，並說明差異。`/debrief` 會追蹤每個通用做法對這位主管有沒有效：有效 2-3 次就寫進應對守則，變成他專屬的做法；無效的就記下來，之後不再用。
+
+這些檔案刻意放在 `references/`，不放進 `.opencode/skills/`，避免 opencode 自動觸發通用模板、蓋過已經學到的偏好。來源、授權和收錄時的修改，見 `references/communication/README.md`。
+
+## 畫圖
+
+`.opencode/skills/` 有兩個畫圖 skill，opencode 1.x 和 2.0 都會自動讀到：
+
+- **mermaid-diagrams**：寫 Mermaid 語法。圖直接寫在 Markdown 報告裡，GitHub、Notion、VS Code 會顯示成圖。不用另外安裝任何東西。
+- **drawio**：draw.io 開發商 JGraph 官方的 skill。產出可以在 draw.io 編輯的 `.drawio` 檔，能匯出 PNG、SVG、PDF（匯出的檔案內嵌原始圖，之後還能改）。
+
+助理不會每次都畫圖。它會依偏好檔的「圖表偏好」決定，偏好沒寫的話只會提議。圖的內容也照顆粒度規則：主圖最多 7 個節點，細節圖留到主管追問時再拿出來。圖存在 `reports/diagrams/`。
+
+### 安裝 draw.io 桌面版（匯出圖片才需要）
+
+不裝也能產出 `.drawio` 檔（用 draw.io 網頁版或 VS Code 外掛打開）。要把 Mermaid 轉成 draw.io 格式，或匯出 PNG／PDF，才需要桌面版。Ubuntu：
+
+```bash
+# 方法一：snap
+sudo snap install drawio
+
+# 方法二：.deb（到 https://github.com/jgraph/drawio-desktop/releases 找最新版）
+wget https://github.com/jgraph/drawio-desktop/releases/download/v32.6.10/drawio-amd64-32.6.10.deb
+sudo apt install ./drawio-amd64-32.6.10.deb
+```
+
+在沒有螢幕的環境（SSH、cron 排程）執行，要另外裝 `xvfb`，助理會自動在指令前加 `xvfb-run -a`：
+
+```bash
+sudo apt install xvfb
+```
+
+已在 Ubuntu 24.04 實測 draw.io 32.6.10：有螢幕時直接執行即可；沒有螢幕時加 `xvfb-run -a` 後，Mermaid 轉 `.drawio`、匯出 PNG 都正常，中文標籤顯示正確。
+
+### Mermaid 轉圖片（選用）
+
+Mermaid 寫在 Markdown 裡就會被顯示成圖，通常不用轉。真的需要圖片檔時，可以交給 draw.io 轉，或裝 mermaid-cli：
+
+```bash
+npm install -g @mermaid-js/mermaid-cli
+mmdc -i diagram.mmd -o diagram.png
+```
+
+### 更新 skill
+
+兩個 skill 都是複製進來的，不會自動更新。各自資料夾的 `NOTICE.md` 寫了來源版本、我做過的修改，以及更新步驟。
 
 ## 接公司系統（MCP）
 

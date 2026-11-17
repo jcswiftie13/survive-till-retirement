@@ -13,6 +13,7 @@ $ARGUMENTS
 2. 從已載入的偏好與守則，找出這類任務的顆粒度設定：預設層級、必帶項目、追問路徑、長度上限、雷區。
 3. 在 `memory/episodes/` 找同類型或同專案的 3-5 筆事件，看主管實際問過什麼、在哪裡打斷過、用什麼口氣。
 4. 依據以上，準備 5 題左右的提問，順序照他的追問路徑。專案裡的弱點（卡住的事、沒有數字的地方、延期）優先問。
+5. 若記憶裡這位主管的資料還很少，參考 `references/communication/stakeholder-update/SKILL.md` 的「Executives want」一段（策略背景、目標進度、需要他協助的風險、需要他拍板的決策）來出題，並在開頭一行說明「主管資料不足，部分題目是通用情境」。
 
 ## 進行方式
 
@@ -33,6 +34,7 @@ $ARGUMENTS
 - **L1**：一句話，這次最需要改的一件事。
 - **L2**：每題一行：這題答得如何、哪裡違反了顆粒度設定或踩到雷區，以及更好的說法（一句話示範）。每點標出依據，例如 `[pref-003]`、`[ep 2026-10-15-週報]`。
 - **缺的資料**：模擬中使用者答不出來、記憶裡也沒有的資訊，建議他會前補齊。
+- 使用者被問倒或想爭取時間的地方，可以從 `references/communication/difficult-workplace-conversations/references/delivery-scripts.md` 挑一句合適的說法給他，標 `[ref: difficult-workplace-conversations]`。
 
 ## 不寫入記憶
 
